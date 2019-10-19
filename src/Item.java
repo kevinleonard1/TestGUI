@@ -6,7 +6,6 @@ public abstract class Item {
 	private int height;
 	private int width;
 	private Vendor vendor;
-	private int copies;
 	
 	public Item(String _name, String _itemId, int _height, int _width, Vendor _vendor) {
 		name = _name;
@@ -14,7 +13,7 @@ public abstract class Item {
 		height = _height;
 		width = _width;
 		vendor = _vendor;
-		copies = 1;
+		quantity = 1;
 	}
 	
 	public void setName(String _name) {

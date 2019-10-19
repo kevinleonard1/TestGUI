@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class App {
 
@@ -85,7 +86,7 @@ public class App {
 							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(b1)))
-					.addContainerGap(286, Short.MAX_VALUE))
+					.addContainerGap(123, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -98,7 +99,7 @@ public class App {
 						.addComponent(b1))
 					.addGap(58)
 					.addComponent(lblNewLabel)
-					.addContainerGap(206, Short.MAX_VALUE))
+					.addContainerGap(222, Short.MAX_VALUE))
 		);
 		frmSimpleOopUi.getContentPane().setLayout(groupLayout);
 		

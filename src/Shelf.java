@@ -8,7 +8,7 @@ public class Shelf {
 	private String shelfId;
 	private int height;
 	private int width;
-	private ArrayList<Item> itemShelfed = new ArrayList<Item>();
+	private ArrayList<ItemStock> itemShelfed = new ArrayList<ItemStock>();
 	private int emptySpace;
 	
 	public Shelf(String _shelfId, int _height, int _width) {
