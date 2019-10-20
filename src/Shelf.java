@@ -9,42 +9,88 @@ public class Shelf {
 	private int height;
 	private int width;
 	private ArrayList<ItemStock> itemShelfed = new ArrayList<ItemStock>();
-	private int emptySpace;
+	//private int emptySpace;
 	
 	public Shelf(String _shelfId, int _height, int _width) {
 		shelfId = _shelfId;
 		height = _height;
 		width = _width;
-		emptySpace = width;
+		//emptySpace = width;
+		Item l = new Laptop("1","abc",10,10,new Vendor("x","10","somewhere"),"Core i5", 16);
+		addItem(l,10);
+		addItem(l,2);
+		subtractItem(l,11);
+		subtractItem(l,1);
 	}
 	
-	public void addItem(Item i) {
-		if (i.getHeight() < height) {
-			if (i.getWidth() < emptySpace) {
-				itemShelfed.add(i);
-				emptySpace = emptySpace - i.getWidth();
+	public void addItem(Item i, int quantity) {
+		ItemStock stock = getStock(i);
+		if (stock == null) {
+			itemShelfed.add(new ItemStock(i, quantity));
+			System.out.println(Integer.toString(quantity));
+
+		} else {
+			stock.addQuantity(quantity);
+			System.out.println(Integer.toString(stock.getQuantity()));
+		}
+	}
+	
+	public void subtractItem(Item i, int quantity) {
+		ItemStock stock = getStock(i);
+		if (stock == null) {
+			System.out.println("Item does not exist");
+		} else {
+			if (stock.getQuantity() >= quantity) {
+				stock.subtractQuantity(quantity);
+				System.out.println(Integer.toString(stock.getQuantity()));
 			} else {
-				showError();
+				System.out.println("Not enough items in stock");
 			}
-		} else {
-			showError();
+			if (stock.getQuantity()==0) {
+				itemShelfed.remove(stock);
+			}
 		}
 	}
 	
-	public void removeItem(String itemId) {
-		//identify the item first
-		Item i = null;
-		for (Item counter: itemShelfed) {
-			if (counter.identifyItem(itemId)) {
-				i = counter;
+	public void setShelfId(String _shelfId) {
+		shelfId = _shelfId;
+	}
+	
+	public void setHeight(int _height) {
+		height = _height;
+	}
+	
+	public void setWidth(int _width) {
+		width = _width;
+	}
+	
+	public String getShelfId() {
+		return shelfId;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public ArrayList<ItemStock> getItemStock() {
+		ArrayList<ItemStock> cloneStock = new ArrayList<ItemStock>();
+		for (ItemStock counter: itemShelfed) {
+			cloneStock.add(counter.clone());
+		}
+		return cloneStock;
+	}
+	
+	public ItemStock getStock(Item i) {
+		for (ItemStock counter: itemShelfed) {
+			if (counter.getItem().getItemId() == i.getItemId()) {
+				return counter.clone();
 			}
 		}
-		if (i == null) {
-			showError();
-		} else {
-			itemShelfed.remove(i);
-		}
-		
+		return null;
 	}
 	
 	public void showError() {

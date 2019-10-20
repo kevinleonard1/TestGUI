@@ -1,25 +1,26 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-
 import javax.swing.JFrame;
 
 public class Main {
 	
-	private ArrayList<Shelf> shelfList = new ArrayList<Shelf>();
-	//private ArrayList<Item> itemList = new ArrayList<Item>();???
+	private Map<String,Shelf> shelfList = new HashMap<String,Shelf>();
 	private Set<Vendor> vendorList = new HashSet<Vendor>();
 	
 	public static void main(String[] args) {
-		listAllItem() //returns HashMap
+		/*listAllItem() //returns HashMap
 		
 		App.main(args);
 		Vendor v = new Vendor();
 		Item i = new Item(.,,,, v);
 		vendorList.add(v);
-		itemList.add(i);
+		itemList.add(i);*/
+		Shelf s = new Shelf("a",10,10);
 	}
-	
+
 	public void initializeData() {
 		
 	}

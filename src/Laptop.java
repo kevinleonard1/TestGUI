@@ -1,16 +1,28 @@
 
 public class Laptop extends Item {
 
-	private int ramSize;
-	private int memory;
+	private String cpu;
+	private int ram;
 	
-	public Laptop(String _name, String _itemId, int _height, int _width, Vendor _vendor, int _ramSize, int _memory) {
+	public Laptop(String _name, String _itemId, int _height, int _width, Vendor _vendor, String _cpu, int _ram) {
 		super(_name, "L"+_itemId, _height, _width, _vendor);
-		ramSize = _ramSize;
-		memory = _memory;
+		cpu = _cpu;
+		ram = _ram;
 	}
 	
-	//setter and getter here
+	public void setCPU(String _cpu) {
+		cpu = _cpu;
+	}
 	
-
+	public void setRAM(int _ram) {
+		ram = _ram;
+	}
+	
+	public String getCPU() {
+		return cpu;
+	}
+	
+	public int getRAM() {
+		return ram;
+	}
 }
