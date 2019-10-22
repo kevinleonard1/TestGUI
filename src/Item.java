@@ -51,7 +51,7 @@ public abstract class Item {
 		return vendor;
 	}
 	
-	/*public boolean identifyItem(String _itemId) {
-		return itemId == _itemId;
-	}*/
+	public String getVendorId() {
+		return vendor.getVendorId();
+	}
 }

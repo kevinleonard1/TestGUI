@@ -3,38 +3,42 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * The class for the shelf
+ * 
+ * @author Kevin Leonard
+ * 
+ */
 public class Shelf {
 	
 	private String shelfId;
 	private int height;
 	private int width;
 	private ArrayList<ItemStock> itemShelfed = new ArrayList<ItemStock>();
-	//private int emptySpace;
 	
 	public Shelf(String _shelfId, int _height, int _width) {
 		shelfId = _shelfId;
 		height = _height;
 		width = _width;
-		//emptySpace = width;
-		Item l = new Laptop("1","abc",10,10,new Vendor("x","10","somewhere"),"Core i5", 16);
-		addItem(l,10);
-		addItem(l,2);
-		subtractItem(l,11);
-		subtractItem(l,1);
 	}
 	
+	/**
+	 * Function to add item to this shelf
+	 */
 	public void addItem(Item i, int quantity) {
 		ItemStock stock = getStock(i);
 		if (stock == null) {
 			itemShelfed.add(new ItemStock(i, quantity));
-			System.out.println(Integer.toString(quantity));
 
 		} else {
 			stock.addQuantity(quantity);
-			System.out.println(Integer.toString(stock.getQuantity()));
 		}
 	}
 	
+	/**
+	 * Function to subtract item from this shelf
+	 * Any item that reaches 0 quantity will be automatically removed from shelf
+	 */
 	public void subtractItem(Item i, int quantity) {
 		ItemStock stock = getStock(i);
 		if (stock == null) {
@@ -42,10 +46,10 @@ public class Shelf {
 		} else {
 			if (stock.getQuantity() >= quantity) {
 				stock.subtractQuantity(quantity);
-				System.out.println(Integer.toString(stock.getQuantity()));
 			} else {
 				System.out.println("Not enough items in stock");
 			}
+			//check if item quantity is 0
 			if (stock.getQuantity()==0) {
 				itemShelfed.remove(stock);
 			}
@@ -76,6 +80,9 @@ public class Shelf {
 		return width;
 	}
 	
+	/**
+	 * Function that returns the list of item stock in this shelf
+	 */
 	public ArrayList<ItemStock> getItemStock() {
 		ArrayList<ItemStock> cloneStock = new ArrayList<ItemStock>();
 		for (ItemStock counter: itemShelfed) {
@@ -84,21 +91,29 @@ public class Shelf {
 		return cloneStock;
 	}
 	
+	/**
+	 * Function that returns the stock of a specific item in this shelf
+	 * 
+	 * @param item: item to search for
+	 */
 	public ItemStock getStock(Item i) {
 		for (ItemStock counter: itemShelfed) {
-			if (counter.getItem().getItemId() == i.getItemId()) {
-				return counter.clone();
+			if (counter.getItem().getItemId().equals(i.getItemId())) {
+				return counter;
 			}
 		}
 		return null;
 	}
 	
-	public void showError() {
-		JOptionPane frame = null;
-		JOptionPane.showMessageDialog(frame,
-			    "Item cannot be placed on this shelf",
-			    "Input Error",
-			    JOptionPane.ERROR_MESSAGE);
+	/**
+	 * Function to check if shelf contains a specific item
+	 */
+	public boolean containsItem(Item i) {
+		return (getStock(i) != null);
+	}
+	
+	public String getDescription() {
+		return (shelfId + "\t" + Integer.toString(height) + "\t" + Integer.toString(width) + "\n");
 	}
 	
 }

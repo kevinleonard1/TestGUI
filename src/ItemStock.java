@@ -36,6 +36,10 @@ public class ItemStock {
 		return quantity;
 	}
 	
+	public String getDescription() {
+		return (item.getItemId() + "\t" + item.getName() + "\t\t" + Integer.toString(quantity)) + "\n";
+	}
+	
 	public ItemStock clone() {
 		return new ItemStock(item, quantity);
 	}
